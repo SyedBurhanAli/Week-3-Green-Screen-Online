@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./CSS/styles.css" />
+    <title>Upload and Display an Image</title>
+  </head>
+  <body>
+    <script src="http://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"></script>
+
+    <h1>Two Canvases Make Grayscale</h1>
+
+    <!--     <h1>Upload Prototype</h1>
+ -->
+
+    <!-- 1. Create a new pen, and add the following HTML elements: 1 header, 1 canvas (with an ID), 1 text type input (with an ID), 1 button type input (with value and onclick attributes—the onclick event handler should call an upload() function you will write later) -->
+
+    <canvas id="can"></canvas> <canvas id="can2"></canvas>
+
+    <p>
+      Filename:
+      <!-- <input type="text" id="finput" />
+      <input type="button" value="Upload" onclick="upload()" /> -->
+
+      <!-- Adapt the page to upload an image
+        1. Delete the text and button inputs.
+
+        2. Create a file input element. Make sure the file input:
+
+        Accepts only single files
+        Accepts only image files
+        Has an ID
+         -->
+
+      <input
+        type="file"
+        multiple="false"
+        accept="image/*"
+        id="finput"
+        onchange="upload()"
+      />
+      <br /><br />
+      <input type="button" value="Make Grayscale" onclick="makeGray()" />
+    </p>
+    <script src="./JS/main.js"></script>
+  </body>
+</html>

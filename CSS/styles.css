@@ -1,0 +1,10 @@
+/* 2. Practice CSS by adding formatting commands such as: (a) a font family or color for the header and body; (b) a margin for the web page; (c) dimensions and a border for the canvas; (d) a font size for the input elements */
+
+canvas {
+  height: 200px;
+  border: 1px solid lightgray;
+}
+
+input {
+  font-size: 14px;
+}
