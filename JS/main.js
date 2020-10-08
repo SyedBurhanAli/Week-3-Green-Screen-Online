@@ -46,3 +46,57 @@ function makeGray() {
   var imgcanvas2 = document.getElementById("can2");
   image2.drawTo(imgcanvas2);
 }
+
+var fgImage = null;
+var bgImage = null;
+
+function loadForegroundImage() {
+  var imgFile = document.getElementById("fgfile");
+  fgImage = new SimpleImage(imgFile);
+  var canvas = document.getElementById("can");
+  fgImage.drawTo(can);
+}
+
+function loadBackgroundImage() {
+  var imgFile = document.getElementById("bgfile");
+  bgImage = new SimpleImage(imgFile);
+  var canvas = document.getElementById("can2");
+  bgImage.drawTo(can2);
+}
+
+function greenScreen() {
+  if (fgImage == null || !fgImage.complete()) {
+    alert("foreground not loaded");
+    return;
+  }
+  if (bgImage == null || !bgImage.complete()) {
+    alert("background not loaded");
+  }
+  clearCanvas();
+
+  var output = new SimpleImage(fgImage.getWidth(), fgImage.getHeight());
+
+  for (var pixel of fgImage.values()) {
+    var greenThreshold = pixel.getBlue() + pixel.getRed();
+    var x = pixel.getX();
+    var y = pixel.getY();
+    if (pixel.getGreen() > greenThreshold) {
+      var bgPixel = bgImage.getPixel(x, y);
+      output.setPixel(x, y, bgPixel);
+    } else {
+      output.setPixel(x, y, pixel);
+    }
+  }
+  var canvas3 = document.getElementById("can");
+  output.drawTo(canvas3);
+}
+
+function clearCanvas() {
+  var canvas = document.getElementById("can");
+  var context = canvas.getContext("2d");
+  context.clearRect(0, 0, canvas.width, canvas.height); //clear html5 canvas
+
+  var canvas2 = document.getElementById("can2");
+  var context2 = canvas2.getContext("2d");
+  context2.clearRect(0, 0, canvas2.width, canvas2.height); //clear html5 canvas
+}
